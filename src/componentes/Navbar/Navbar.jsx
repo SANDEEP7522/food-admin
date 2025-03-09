@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart, List, PlusCircle} from "lucide-react";
+// import { List, PlusCircle, ShoppingCart } from "lucide-react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+
   // Default profile image
   const profileImage = "https://robohash.org/sandeep"; // Replace with your actual default image
 
@@ -19,36 +20,29 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6">
           <li>
-            <Link to="/" className="text-gray-700 hover:text-red-500">
-            List items
+            <Link to="/list" className="text-gray-700 hover:text-red-500 flex ">
+              <List size={20} className="mr-2  mt-1" />
+              List items
             </Link>
           </li>
           <li>
-            <Link to="/menu" className="text-gray-700 hover:text-red-500">
-              Add Items
+            <Link to="/add" className="text-gray-700 hover:text-red-500 flex">
+              <PlusCircle size={20} className="mr-2  mt-1" /> Add Item
             </Link>
           </li>
           <li>
-            <Link to="/about" className="text-gray-700 hover:text-red-500">
-             Order
+            <Link to="/order" className="text-gray-700 hover:text-red-500 flex ">
+              <ShoppingCart size={20} className="mr-2  mt-1" /> Orders
             </Link>
-          </li> 
+          </li>
         </ul>
 
         {/* Cart, Profile & Login */}
         <div className="hidden md:flex space-x-4 items-center">
-          {/* Cart */}
-          <button className="relative">
-            <ShoppingCart className="text-gray-700 hover:text-red-500" size={24} />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-              2
-            </span>
-          </button>
-
           {/* Profile Image with Default Image */}
           <Link to="/profile">
             <img
-              src= {profileImage} 
+              src={profileImage}
               alt="Profile"
               className="w-10 h-10 rounded-full border-2 border-gray-300 hover:border-red-500"
             />
@@ -57,39 +51,46 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          {menuOpen ? <X size={28} /> : <Menu size={20} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <ul className="md:hidden bg-white shadow-md absolute top-16 left-0 w-full p-4 space-y-4">
-         <li>
-            <Link to="/" className="text-gray-700 hover:text-red-500">
-            List items
+        <ul className="md:hidden  bg-white shadow-md absolute top-16 right-0 w-40 h-full w-22 p-4 space-y-4">
+          <li className="hover:bg-gray-200 w-full rounded-md">
+            <Link to="/list" className="text-gray-700 hover:text-red-500 ml-2 flex ">
+              <List size={20} className="mr-2 mt-1" />
+              List items
+            </Link>
+          </li>
+          <li className="hover:bg-gray-200 w-full rounded-md">
+            <Link to="/add" className="text-gray-700 hover:text-red-500 ml-2 flex">
+              <PlusCircle size={20} className="mr-2 mt-1" />
+              Add items
+            </Link>
+          </li>
+          <li className="hover:bg-gray-200 w-full rounded-md">
+            <Link to="/order" className="text-gray-700 hover:text-red-500 ml-2 flex">
+              <ShoppingCart size={20} className="mr-2 mt-1" />
+              Orders
             </Link>
           </li>
           <li>
-            <Link to="/menu" className="text-gray-700 hover:text-red-500">
-              Add Items
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="text-gray-700 hover:text-red-500">
-             Order
-            </Link>
-          </li> 
-          <li>
-            <Link to="/profile" className="flex items-center space-x-2 text-gray-700 hover:text-red-500">
+            <Link
+              to="/profile"
+              className="flex items-center space-x-2 text-gray-700 hover:text-red-500"
+            >
               <img
                 src={profileImage}
                 alt="Profile"
                 className="w-8 h-8 rounded-full border-2 border-gray-300"
               />
-              <span>Profile</span>
+              <span className="hover:bg-gray-200 w-full rounded-md">
+                Profile
+              </span>
             </Link>
           </li>
-         
         </ul>
       )}
     </nav>
