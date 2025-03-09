@@ -4,8 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 
-function Add() {
-  const BASE_URL = "http://localhost:4000"; // ✅ Changed variable name
+function Add( {BASE_URL} ) {
   const [image, setImage] = useState(null); // ✅ Added image state
   const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

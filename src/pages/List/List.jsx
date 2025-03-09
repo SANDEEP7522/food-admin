@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 
-function List() {
-  const BASE_URL = "http://localhost:4000";
+function List( {BASE_URL} ) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +28,7 @@ function List() {
 
       if (response.data.success) {
         setList(response.data.data);
-        toast.success("✅ Food list fetched successfully!");
+        toast.success("Food list fetched successfully!");
       } else {
         toast.error("❌ Failed to fetch food list!");
       }

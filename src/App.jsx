@@ -9,15 +9,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
+  const BASE_URL = "http://localhost:4000";
   return (
     <>
       <ToastContainer />
       <Navbar />
       <hr />
       <Routes>
-        <Route path="/add" element={<Add />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/list" element={<List />} />
+        <Route path="/add" element={<Add BASE_URL={BASE_URL} />} />
+        <Route path="/order" element={<Order BASE_URL={BASE_URL} />} />
+        <Route path="/list" element={<List   BASE_URL={BASE_URL} />} />
       </Routes>
     </>
   );
