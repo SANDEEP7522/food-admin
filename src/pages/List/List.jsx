@@ -40,6 +40,22 @@ function List() {
     }
   };
 
+  const handleDelete = async (foodId) => {
+    console.log("Deleting food item with ID:", foodId);
+
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/food/remove`,
+        { id: foodId },
+        { headers: { "Content-Type": "application/json" }, timeout: 10000 }
+      );
+      toast.success("Deleted response", response); // Add this line
+      await fetchList();
+    } catch (error) {
+      console.error("Error deleting food item:", error);
+    }
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -52,7 +68,9 @@ function List() {
 
       {/* Loader */}
       {loading ? (
-        <p className="text-center text-gray-500 animate-pulse">⏳ Loading food items...</p>
+        <p className="text-center text-gray-500 animate-pulse">
+          ⏳ Loading food items...
+        </p>
       ) : list.length === 0 ? (
         <p className="text-center text-gray-600">🚫 No food items available.</p>
       ) : (
@@ -82,16 +100,20 @@ function List() {
                         className="w-20 h-20 object-cover rounded-md border shadow-md"
                       />
                     </td>
-                    <td className="p-3 font-medium text-gray-900">{item.name}</td>
+                    <td className="p-3 font-medium text-gray-900">
+                      {item.name}
+                    </td>
                     <td className="p-3 text-gray-700">
                       {foodEmojis[item.category] || "🍽️"} {item.category}
                     </td>
-                    <td className="p-3 text-green-600 font-bold">${item.price}</td>
+                    <td className="p-3 text-green-600 font-bold">
+                      ${item.price}
+                    </td>
                     <td className="p-3 flex justify-center gap-3">
-                      <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition">
-                        <FaEdit />
-                      </button>
-                      <button className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition">
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition"
+                      >
                         <FaTrash />
                       </button>
                     </td>
@@ -100,7 +122,6 @@ function List() {
               </tbody>
             </table>
           </div>
-
 
           {/* Grid Layout for Mobile Screens */}
           <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
@@ -115,13 +136,15 @@ function List() {
                   className="w-35 h-30 object-cover rounded-md border shadow-md"
                 />
                 <h3 className="mt-2 font-semibold text-lg">{item.name}</h3>
-                <p className="text-gray-600">{foodEmojis[item.category] || "🍽️"} {item.category}</p>
+                <p className="text-gray-600">
+                  {foodEmojis[item.category] || "🍽️"} {item.category}
+                </p>
                 <p className="text-gray-600 font-bold mt-1">${item.price}</p>
                 <div className="flex gap-3 mt-3">
-                  <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition">
-                    <FaEdit />
-                  </button>
-                  <button className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition">
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition"
+                  >
                     <FaTrash />
                   </button>
                 </div>
