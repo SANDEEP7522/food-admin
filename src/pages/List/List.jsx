@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { FaTrash } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 
-function List( {BASE_URL} ) {
+function List({ BASE_URL }) {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -110,7 +110,10 @@ function List( {BASE_URL} ) {
                     </td>
                     <td className="p-3 flex justify-center gap-3">
                       <button
-                        onClick={() => handleDelete(item._id)}
+                        onClick={() => {
+                          console.log("🗑️ Deleting Item ID:", item._id);
+                          handleDelete(item._id);
+                        }}
                         className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition"
                       >
                         <FaTrash />
