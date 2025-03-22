@@ -24,7 +24,7 @@ function List({ BASE_URL }) {
   const fetchList = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/food/list`);
-      console.log("response", response);
+      // console.log("response", response);
 
       if (response.data.success) {
         setList(response.data.data);
