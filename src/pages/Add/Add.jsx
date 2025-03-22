@@ -22,8 +22,8 @@ function Add({ BASE_URL }) {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(file); // ✅ Save file for form submission
-      setImagePreview(URL.createObjectURL(file)); // ✅ Show preview
+      setImage(file); 
+      setImagePreview(URL.createObjectURL(file)); 
     }
   };
 
@@ -31,7 +31,7 @@ function Add({ BASE_URL }) {
     event.preventDefault();
 
     if (!image) {
-      alert("Please upload an image!"); // ✅ Error handling
+      alert("Please upload an image!"); 
       return;
     }
 
