@@ -3,8 +3,7 @@ import { FiCamera, FiLoader } from "react-icons/fi";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
-function Add( {BASE_URL} ) {
+function Add({ BASE_URL }) {
   const [image, setImage] = useState(null); // ✅ Added image state
   const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,13 +46,12 @@ function Add( {BASE_URL} ) {
 
     try {
       const response = await axios.post(`${BASE_URL}/api/food/add`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }, 
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       console.log("response", response);
 
       if (response.data.success) {
-        
         setData({
           name: "",
           price: "",
@@ -63,10 +61,9 @@ function Add( {BASE_URL} ) {
         setImagePreview(null);
         setImage(null);
         toast.success(response.data.message);
-      }else{
+      } else {
         toast.error(response.data.message);
       }
-
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -152,6 +149,15 @@ function Add( {BASE_URL} ) {
               <option value="aloo">🥔 Aloo</option>
               <option value="pasta">🍝 Pasta</option>
               <option value="burger">🍔 Burger</option>
+              <option value="laptop">💻 Laptop</option>
+              <option value="smartphone">📱 Smartphone</option>
+              <option value="clothing">👕 Clothing</option>
+              <option value="shoes">👟 Shoes</option>
+              <option value="watch">⌚ Watch</option>
+              <option value="furniture">🛏️ Furniture</option>
+              <option value="beauty">💄 Beauty Products</option>
+              <option value="grocery">🛒 Grocery</option>
+              <option value="gaming">🎮 Gaming</option>
             </select>
           </div>
 
@@ -174,11 +180,11 @@ function Add( {BASE_URL} ) {
           disabled={isLoading}
           className="w-full bg-gray-300 text-white py-2 rounded-md text-lg font-bold transition-all flex items-center justify-center gap-2"
         >
-          {isLoading ? 
+          {isLoading ? (
             <FiLoader className="animate-spin text-xl" />
-           : 
+          ) : (
             "🚀 Add Product"
-          }
+          )}
         </button>
       </form>
     </div>

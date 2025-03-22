@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="text-2xl font-bold text-red-500">
-          🍔 <Link to="/">Food Delivery</Link>
+          🍔 <Link to="/">E-commerce</Link>
         </div>
 
         {/* Desktop Menu */}
