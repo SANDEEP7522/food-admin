@@ -9,7 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
-  const BASE_URL = "http://localhost:4000";
+  // const BASE_URL = "http://localhost:4000";
+  const BASE_URL = "https://food-backend-1-9h96.onrender.com";
+  
   return (
     <>
       <ToastContainer />

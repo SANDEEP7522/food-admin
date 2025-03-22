@@ -10,7 +10,7 @@ function Order({ BASE_URL }) {
   const fetchOrder = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/api/order/list`);
-      // console.log("✅ Full API Response:", response.data);
+      console.log("✅ Full API Response:", response.data);
 
       if (response.data.success && Array.isArray(response.data.orders)) {
         setOrder(response.data.orders);
@@ -23,8 +23,6 @@ function Order({ BASE_URL }) {
       setOrder([]); // Handle errors gracefully
     }
   };
-
-  
 
   useEffect(() => {
     fetchOrder();
@@ -47,11 +45,14 @@ function Order({ BASE_URL }) {
                 📦 Order ID: <span className="text-blue-600">{order._id}</span>
               </h2>
               <p className="text-gray-700">
-                💰 <strong>Amount:</strong> ₹{order.amount}
+                💰 <strong>Amount:</strong> ${order.amount}
               </p>
               <p className="text-gray-700">
                 📌 <strong>Status:</strong>{" "}
-                <select name="status" className="bg-gray-200 border border-gray-300 rounded">
+                <select
+                  name="status"
+                  className="bg-gray-200 border border-gray-300 rounded"
+                >
                   <option value="Food Proccessing">{order.status}</option>
                   <option value="Out for Delivery">Out for Delivery</option>
                   <option value="Delivered">Delivered</option>
@@ -90,10 +91,17 @@ function Order({ BASE_URL }) {
               <h3 className="mt-4 font-semibold text-gray-800">🛍 Items:</h3>
               <ul className="pl-4 space-y-1 text-gray-700">
                 {order.items.map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    🔹{" "}
+                  <li key={index} className="items-center">
                     <span className="ml-2">
-                      {item.name} - ₹{item.price}
+                      🔹
+                      <span className="font-semibold">Name: </span>
+                      {item.name}
+                    </span>
+
+                    <span className="ml-2">
+                      🔹
+                      <span className="font-semibold">Quantity: </span>
+                      {item.quantity}
                     </span>
                   </li>
                 ))}
