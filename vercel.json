@@ -1,0 +1,16 @@
+{
+     "version": 2,
+     "routes": [
+       { "src": "/(.*)", "dest": "/index.html" }
+     ],
+     "build": {
+       "env": {
+         "NODE_ENV": "production"
+       }
+     },
+     "ignoreCommand": "git check-ignore -v",
+     "functions": {
+       "api/*.js": { "memory": 1024, "maxDuration": 10 }
+     }
+   }
+   
